@@ -1,14 +1,21 @@
-import { View, Text } from "react-native";
-import { WeatherCardProps } from "../types/cuaca";
+// components/SearchBox.tsx 
+import { useState } from "react"; 
+import { View, TextInput, Button } from "react-native"; 
+interface SearchBoxProps { 
+ onCari: (kota: string) => void; 
+} 
+export default function SearchBox({ onCari }: SearchBoxProps) { 
+ const [teks, setTeks] = useState(""); 
+ return ( 
+ <View style={{ flexDirection: "row", gap: 8 }}> 
+ <TextInput 
+ placeholder="kota" 
+ value={teks} 
+ onChangeText={setTeks} 
+ style={{ flex: 1, borderWidth: 1, padding: 8 }} 
+ /> 
+ <Button title="Cari" onPress={() => onCari(teks)} /> 
+ </View> 
+ );
 
-export default function WeatherCard({ kota, suhu, tingkatAQI }: WeatherCardProps) {
-  const warnaAQI = tingkatAQI === "BAIK" ? "green" : "orange";
-
-  return (
-    <View style={{ padding: 16, borderRadius: 8, backgroundColor: "#F4F7FA" }}>
-      <Text style={{ fontWeight: "bold", fontSize: 18 }}>{kota}</Text>
-      <Text style={{ fontSize: 32 }}>{suhu}°C</Text>
-      <Text style={{ color: warnaAQI }}>AQI: {tingkatAQI}</Text>
-    </View>
-  );
 }
