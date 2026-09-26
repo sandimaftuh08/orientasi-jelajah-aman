@@ -1,4 +1,5 @@
-import { View, Text } from "react-native";
+import { Link } from "expo-router";
+import { Text, View } from "react-native";
 
 interface RiwayatListProps {
   daftarKota: string[];
@@ -8,7 +9,15 @@ export default function RiwayatList({ daftarKota }: RiwayatListProps) {
   return (
     <View>
       {daftarKota.map((kota) => (
-        <Text key={kota}>{kota}</Text>
+        <Link
+          key={kota}
+          href={{
+            pathname: "/detail/[kota]" as any,
+            params: { kota },
+          }}
+        >
+          <Text>{kota}</Text>
+        </Link>
       ))}
     </View>
   );
