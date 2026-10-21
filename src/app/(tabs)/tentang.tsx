@@ -16,7 +16,7 @@ export default function TabTentang() {
 
         <Text style={{ fontSize: typeScale.subjudul }}>Versi 1.0.0</Text>
 
-        <Text style={{ fontSize: typeScale.isi }}>Pembuat: Candra</Text>
+        <Text style={{ fontSize: typeScale.isi }}>Pembuat: Sandi maftuh</Text>
       </View>
     </SafeAreaView>
   );
