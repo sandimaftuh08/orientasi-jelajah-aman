@@ -1,8 +1,9 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
+import type { HasilGeocoding } from "../types/geocoding";
 
 interface RiwayatListProps {
-  daftarKota: string[];
+  daftarKota: HasilGeocoding[];
 }
 
 export default function RiwayatList({ daftarKota }: RiwayatListProps) {
@@ -10,15 +11,19 @@ export default function RiwayatList({ daftarKota }: RiwayatListProps) {
     <View>
       {daftarKota.map((kota) => (
         <Link
-          key={kota}
+          key={kota.id}
           href={{
             pathname: "/detail/[kota]" as any,
-            params: { kota },
+            params: { kota: kota.name },
           }}
         >
-          <Text>{kota}</Text>
+          <Text>
+            {kota.name}
+            {kota.admin1 ? `, ${kota.admin1}` : ""}
+          </Text>
         </Link>
       ))}
+      {daftarKota.length === 0 && <Text>Belum ada kota di riwayat pencarian.</Text>}
     </View>
   );
 }
